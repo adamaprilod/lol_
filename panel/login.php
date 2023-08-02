@@ -1,90 +1,77 @@
+<?php
+session_start();
+if(isset($_SESSION['email'])) {
+    echo '<script>window.location.replace("./index.php");</script>';
+} else {
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Login</title>
-  <!-- CSS -->
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: rgb(224,243,246);
-      background: linear-gradient(150deg, rgba(224,243,246,1) 27%, rgba(255,255,0,1) 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgb(224,243,246);
+            background: linear-gradient(150deg, rgba(224,243,246,1) 27%, rgba(255,255,0,1) 100%);
+            
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-    .container {
-      background-color: #fff;
-      border-radius: 5px;
-      padding: 60px;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 15px 15px;
-      
-    }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
 
-    h2 {
-      text-align: center;
-      color: #333;
-    }
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+        input[type="email"],
+        input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      color: #666;
-    }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #121212;
+            color: #ffff00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    .form-group input {
-      width: 95%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-
-    .form-group button {
-      width: 100%;
-      padding: 12px;
-      background-color: #121212;
-      color: #ffffff;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .form-group button:hover {
-      background-color: #136673;
-    }
-  </style>
-  <link rel="icon" type="image/x-icon" href="../assets/logo.ico" />
+        input[type="submit"]:hover {
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <center>
-    <img src="../assets/logo.ico" alt="" style="width:150px">
-  </center>
-    <h2>Login SMK TERPUT 2 BEKASI</h2>
-    <form id="loginForm">
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" required>
-      </div>
-      <div class="form-group">
-        <button type="submit">Log In</button>
-      </div>
+    <h1>Login</h1>
+    <form action="./ceklogin.php" method="post">
+        <center>
+            <img src="../assets/logo.ico" alt="" width="150px">
+        </center><br>
+        <input type="email" name="email" placeholder="Email" alt="email" required="required"><br>
+        <input type="password" name="password" placeholder="Password" alt="password" required="required"><br><br>
+        <input type="submit" name="Login" value="Login" alt="submit">
+        
     </form>
 </body>
 </html>
+<?php } ?>
