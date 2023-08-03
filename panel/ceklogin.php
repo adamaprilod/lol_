@@ -52,8 +52,8 @@ session_start();
 if (isset($_SESSION['email'])) {
     echo '<script>window.location.replace("./dashboard.php");</script>';
 } else {
-    $email = "admin@email.com";
-    $password = "123456";
+    $email = "admin@gmail.com";
+    $password = "admin";
 
     if (isset($_POST['email']) && isset($_POST['password'])) {
         if ($_POST['email'] == $email && $_POST['password'] == $password) {
