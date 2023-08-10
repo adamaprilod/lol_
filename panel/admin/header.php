@@ -100,7 +100,7 @@
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
-    <a class="nav-link" href="">
+    <a class="nav-link" href="register.php">
         <i class="fas fa-registered"></i>
         <span>Register</span></a>
 </li>
@@ -327,5 +327,3 @@
     </nav>
     <!-- End of Topbar -->
 </div>
-</body>
-</html>
