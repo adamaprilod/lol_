@@ -11,37 +11,37 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Registrasi Akun</h1>
                         </div>
-                        <form class="user" method="post" onsubmit="return validateForm()">
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="nama"
-                                    placeholder="Nama" required>
-                            </div>
+                        <form class="user" method="post" action="proses_regis.php">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="username"
-                                    placeholder="Username" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control form-control-user" id="email"
-                                    placeholder="Email" required>
+                                placeholder="Username" name="username" required>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user"
-                                        id="Password" placeholder="Password" required>
+                                        id="Password" placeholder="Password" name="password" required>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user"
-                                        id="RepeatPassword" placeholder="Ulang Password" required>
+                                        id="RepeatPassword" placeholder="Ulang Password" name="password2" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <select class="form-select form-control form-control user" id="hakakses" name="hakakses" required>
+                                <input type="text" class="form-control form-control-user" id="nama"
+                                    placeholder="Nama" name="nama" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-user" id="email"
+                                placeholder="Email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-select form-control form-control user" id="hakakses" name="akses" required>
                                     <option value="" disabled selected>Pilih Hak Akses</option>
                                     <option value="admin">Admin</option>
                                     <option value="operator">Operator</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">Buat Akun</button>
+                            <button type="submit" name="regis" class="btn btn-primary btn-user btn-block">Buat Akun</button>
                         </form>
                     </div>
                 </div>
