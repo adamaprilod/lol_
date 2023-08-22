@@ -1,4 +1,4 @@
-<?php include "header.php"?>
+<?php include "header.php";?>
 <body id="page-top">
     <div class="container">
     <div class="card o-hidden border-0 shadow-lg my-5">
@@ -11,7 +11,7 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Registrasi Akun</h1>
                         </div>
-                        <form class="user" onsubmit="return validateForm()">
+                        <form class="user" method="post" onsubmit="return validateForm()">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="nama"
                                     placeholder="Nama" required>
@@ -67,5 +67,5 @@
     }
 </script>
 
-    <?php include "footer.php"?>
+    <?php include "footer.php";?>
    

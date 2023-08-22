@@ -25,7 +25,7 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
-    <?php include "header.php"?>
+    <?php include "header.php";?>
     <div id="wrapper">
         <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -361,7 +361,7 @@
             </div>
             <!-- End of Main Content -->
             
-            <?php include "footer.php"?>
+            <?php include "footer.php";?>
         
     
 
