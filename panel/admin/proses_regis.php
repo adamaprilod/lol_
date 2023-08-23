@@ -25,7 +25,8 @@ if (isset($_POST['regis'])){
         <script>
             alert('Konfirmasi Password Salah');
             document.location.href='register.php';
-        ";
+        </script>";
+        
         return false;
     }
 
@@ -39,7 +40,7 @@ if (isset($_POST['regis'])){
         <script>
         alert('Akun Berhasil Di Buat Silahkan Login!! :)');
         document.location.href='register.php';
-    ";
+        </script>";
     } else{
         echo mysqli_error($conn);
     }
