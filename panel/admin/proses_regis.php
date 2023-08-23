@@ -7,9 +7,9 @@ if (isset($_POST['regis'])){
     $nama = htmlspecialchars($_POST['nama']);
     $email = htmlspecialchars($_POST['email']);
     $akses = htmlspecialchars($_POST['akses']);
-}
+
     //cek username
-    $result = mysqli_query($conn, "SELECT username FROM user WHERE usernma = '$username");
+    $result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'");
     if(mysqli_fetch_assoc($result)){
         echo "
         <script>
@@ -33,5 +33,15 @@ if (isset($_POST['regis'])){
     $password = password_hash ($password, PASSWORD_DEFAULT);
 
     //simpan data ke database
-    mysqli_query($conn, "INSERT INTO user VALUES ('', '$username', '$password', )")
+    mysqli_query($conn, "INSERT INTO user VALUES ('', '$username', '$password', '$nama', '$email', '$akses')");
+    if (mysqli_affected_rows($conn)){
+        echo"
+        <script>
+        alert('Akun Berhasil Di Buat Silahkan Login!! :)');
+        document.location.href='register.php';
+    ";
+    } else{
+        echo mysqli_error($conn);
+    }
+}
 ?>
