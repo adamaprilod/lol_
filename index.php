@@ -32,7 +32,7 @@
                         <li class="nav-item"><a class="nav-link" href="#Fasilitas">Fasilitas</a></li>
                         <li class="nav-item"><a class="nav-link" href="#Ekskul">Jurusan</a></li>
                         <li class="nav-item"><a class="nav-link" href="#hub">Hubungi Kami</a></li>
-                        <li><a class="nav-link" href="panel/login.php">login</a></li>
+                        <li><a class="nav-link" href="panel/admin/login.php">login</a></li>
                     </ul>
                 </div>
             </div>

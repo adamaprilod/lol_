@@ -134,6 +134,7 @@ if (isset($_POST['Login'])) {
     <h1>Login</h1>
     <form method="post">
         <center>
+        <img src="logo.ico  " alt="Avatar">
         </center><br>
         <input type="text" name="username" placeholder="Username" alt="username" required="required"><br>
         <input type="password" name="password" placeholder="Password" alt="password" required="required"><br><br>
