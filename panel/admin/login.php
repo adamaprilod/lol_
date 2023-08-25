@@ -2,85 +2,75 @@
 session_start();
 include 'conn.php';
 
-//cek cookie
+// Check if user is already logged in using session
+if (isset($_SESSION["login"])) {
+  header("Location: index.php");
+  exit;
+}
+
+// Check if cookie exists and try to log in with cookie
 if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
   $id = $_COOKIE['id'];
   $key = $_COOKIE['key'];
 
-  $db = mysqli_query($conn, "SELECT username FROM user WHERE id_user = '$id'");
+  $stmt = mysqli_prepare($conn, "SELECT username FROM user WHERE id_user = ?");
+  mysqli_stmt_bind_param($stmt, "i", $id);
+  mysqli_stmt_execute($stmt);
+  $result = mysqli_stmt_get_result($stmt);
+  $row = mysqli_fetch_assoc($result);
 
-  $row = mysqli_fetch_assoc($db);
-
-  //cek cookie dengan username
-  if ($key === hash('sha256', $row['username'])) {
+  if ($row && $key === hash('sha256', $row['username'])) {
     $_SESSION['login'] = true;
+    header("Location: index.php");
+    exit;
   }
 }
 
-//masuk ke session
-if (isset($_SESSION["login"])) {
-  header("Location: index.php");
-}
-//cek username dan password
-if (isset($_POST['login'])) {
+// Attempt to log in with submitted form
+if (isset($_POST['Login'])) {
   $username = htmlspecialchars($_POST["username"]);
   $password = htmlspecialchars($_POST["password"]);
 
-  $cek = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+  $stmt = mysqli_prepare($conn, "SELECT * FROM user WHERE username = ?");
+  mysqli_stmt_bind_param($stmt, "s", $username);
+  mysqli_stmt_execute($stmt);
+  $result = mysqli_stmt_get_result($stmt);
 
-  if (mysqli_num_rows($cek) === 1) {
-    //cek password
-    $row = mysqli_fetch_assoc($cek);
-    $_SESSION['nama'] = $row['nama'];
-    $_SESSION['id_user'] = $row['id_user'];
-    if ($row['hak_akses'] == 'admin') {
+  if (mysqli_num_rows($result) === 1) {
+    $row = mysqli_fetch_assoc($result);
+
+    if (password_verify($password, $row['password'])) {
+      $_SESSION['nama'] = $row['nama'];
+      $_SESSION['id_user'] = $row['id_user'];
       $_SESSION['username'] = $username;
-      $_SESSION['hak_akses'] = 'admin';
-      if (password_verify($password, $row['password'])) {
-        //cek dan buat session
-        $_SESSION['login'] = true;
-        //buat dan cek cookie
-        if (isset($_POST['remember'])) {
-          setcookie('id', $row['id_user'], time() + 60);
-          setcookie('key', hash('sha256', $row['username']), time() + 60);
-        }
-        echo "
-    <script>
-        alert('Login Admin Berhasil!');
-        document.location.href='index.php';
-    </script>
-    ";
+      $_SESSION['hak_akses'] = $row['hak_akses'];
+      $_SESSION['login'] = true;
+
+      if (isset($_POST['remember'])) {
+        $secure_key = hash('sha256', $row['username']);
+        setcookie('id', $row['id_user'], time() + 60, "/", null, true, true);
+        setcookie('key', $secure_key, time() + 60, "/", null, true, true);
       }
-    } else if ($row['hak_akses'] == 'operator') {
-      $_SESSION['username'] = $username;
-      $_SESSION['hak_akses'] = 'operator';
-      if (password_verify($password, $row['password'])) {
-        //cek dan buat session
-        $_SESSION['login'] = true;
-        //buat dan cek cookie
-        if (isset($_POST['remember'])) {
-          setcookie('id', $row['id_user'], time() + 60);
-          setcookie('key', hash('sha256', $row['username']), time() + 60);
-        }
-        echo "
-    <script>
-        alert('Login Operator Berhasil!');
-        document.location.href='index.php';
-    </script>
-    ";
-      }
+
+      header("Location: index.php");
+      exit;
     } else {
-      $_SESSION['username'] = '';
-      $_SESSION['hak_akses'] = '';
       echo "
+      <script>
+          alert('Password Salah!');
+          window.location.href = 'login.php';
+      </script>
+      ";
+    }
+  } else {
+    echo "
     <script>
-        alert('Login Gagal!');
-        document.location.href='login.php';
+        alert('Username Tidak Ditemukan!');
+        window.location.href = 'login.php';
     </script>
     ";
-    }
   }
-  $error = true;
+  mysqli_stmt_close($stmt);
 }
 ?>
 <!DOCTYPE html>
@@ -116,7 +106,7 @@ if (isset($_POST['login'])) {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        input[type="email"],
+        input[type="text"],
         input[type="password"] {
             width: 95%;
             padding: 10px;
@@ -142,11 +132,10 @@ if (isset($_POST['login'])) {
 </head>
 <body>
     <h1>Login</h1>
-    <form action="./ceklogin.php" method="post">
+    <form method="post">
         <center>
-            <img src="../assets/logo.ico" alt="" width="150px">
         </center><br>
-        <input type="email" name="email" placeholder="Email" alt="email" required="required"><br>
+        <input type="text" name="username" placeholder="Username" alt="username" required="required"><br>
         <input type="password" name="password" placeholder="Password" alt="password" required="required"><br><br>
         <input type="submit" name="Login" value="Login" alt="submit">
         
