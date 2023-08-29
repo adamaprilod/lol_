@@ -41,7 +41,7 @@ if (isset($_POST['Login'])) {
 
     if (password_verify($password, $row['password'])) {
       $_SESSION['nama'] = $row['nama'];
-      $_SESSION['id_user'] = $row['id_user'];
+      $_SESSION['id_user'] = $row['id_user']; 
       $_SESSION['username'] = $username;
       $_SESSION['hak_akses'] = $row['hak_akses'];
       $_SESSION['login'] = true;
@@ -92,6 +92,7 @@ if (isset($_POST['Login'])) {
         }
 
         h1 {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
             margin-top: 50px;
         }
