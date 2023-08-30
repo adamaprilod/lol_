@@ -103,11 +103,7 @@ if (!isset($_SESSION['login'])) {
         </div>
     </div>
 </li>
-<?php
-    if ($status == 'admin') {
-        
-    }
-?>
+<?php if ($_SESSION['hak_akses'] == 'admin') : ?>
 <!-- Nav Item - Charts -->
 <li class="nav-item">
     <a class="nav-link" href="">
@@ -121,7 +117,7 @@ if (!isset($_SESSION['login'])) {
         <i class="fas fa-registered"></i>
         <span>Register</span></a>
 </li>
-
+<?php endif; ?>
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 
@@ -143,31 +139,32 @@ if (!isset($_SESSION['login'])) {
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-        <!-- Sidebar Toggle (Topbar) -->
+        
+    <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
         </button>
+
+        <!-- Topbar Search -->
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+        <span>Selamat Datang, </span>
+        <span><?php echo strtoupper($_SESSION['username']); ?></span>
+        </form>
 
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
 
 
+
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                    <img class="img-profile rounded-circle"
-                        src="img/undraw_profile.svg">
+                <a onclick="return confirm('Yakin Ingin Log Out');" href="logout.php">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="text-dark">Logout</span>
                 </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="userDropdown">
-                    <a onclick="return confirm('Yakin Ingin Log Out');" href="logout.php">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                    </a>
-                </div>
+                
+
+                
             </li>
 
         </ul>
