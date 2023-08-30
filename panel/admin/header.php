@@ -64,7 +64,7 @@ if (!isset($_SESSION['login'])) {
 
 
 <!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
         aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-cog"></i>
@@ -81,6 +81,7 @@ if (!isset($_SESSION['login'])) {
     </div>
 </li>
 
+<?php if ($_SESSION['hak_akses'] == 'admin') : ?>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -90,7 +91,7 @@ if (!isset($_SESSION['login'])) {
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
         aria-expanded="true" aria-controls="collapsePages">
         <i class="fas fa-edit"></i>
@@ -103,16 +104,15 @@ if (!isset($_SESSION['login'])) {
         </div>
     </div>
 </li>
-<?php if ($_SESSION['hak_akses'] == 'admin') : ?>
 <!-- Nav Item - Charts -->
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link" href="">
     <i class="fas fa-database"></i>
         <span>Data User</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
-<li class="nav-item">
+<li class="nav-item active ">
     <a class="nav-link" href="register.php">
         <i class="fas fa-registered"></i>
         <span>Register</span></a>
