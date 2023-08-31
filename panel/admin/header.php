@@ -54,6 +54,7 @@ if (!isset($_SESSION['login'])) {
         <span>Home</span></a>
 </li>
 
+<?php if ($_SESSION['hak_akses'] == 'admin') : ?>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -80,8 +81,7 @@ if (!isset($_SESSION['login'])) {
         </div>
     </div>
 </li>
-
-<?php if ($_SESSION['hak_akses'] == 'admin') : ?>
+<?php endif; ?>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -93,24 +93,25 @@ if (!isset($_SESSION['login'])) {
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item active">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-        aria-expanded="true" aria-controls="collapsePages">
-        <i class="fas fa-edit"></i>
-        <span>Pendaftaran</span>
-    </a>
-    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="login.html">Form Pendaftaran</a>
-            <a class="collapse-item" href="register.html">Data Pendaftaran</a>
+    aria-expanded="true" aria-controls="collapsePages">
+    <i class="fas fa-edit"></i>
+    <span>Pendaftaran</span>
+</a>
+<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="login.html">Form Pendaftaran</a>
+        <a class="collapse-item" href="register.html">Data Pendaftaran</a>
         </div>
     </div>
 </li>
+<?php if ($_SESSION['hak_akses'] == 'admin') : ?>
 <!-- Nav Item - Charts -->
 <li class="nav-item active">
-    <a class="nav-link" href="">
-    <i class="fas fa-database"></i>
+    <a class="nav-link" href="data_user.php">
+        <i class="fas fa-database"></i>
         <span>Data User</span></a>
-</li>
-
+    </li>
+    
 <!-- Nav Item - Tables -->
 <li class="nav-item active ">
     <a class="nav-link" href="register.php">
