@@ -94,11 +94,11 @@ $edit = mysqli_fetch_assoc($data);
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user"
-                                        id="Password" placeholder="Password" name="password" required>
+                                        id="Password" placeholder="Password" name="password">
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user"
-                                        id="RepeatPassword" placeholder="Ulang Password" name="password2" required>
+                                        id="RepeatPassword" placeholder="Ulang Password" name="password2">
                                 </div>
                             </div>
                             <div class="form-group">
