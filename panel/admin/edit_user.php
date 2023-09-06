@@ -81,7 +81,7 @@ $edit = mysqli_fetch_assoc($data);
                 <div class="col-lg-8">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Registrasi Akun</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Edit Akun</h1>
                         </div>
                         <form class="user" method="post">
                             <div class="form-group">
