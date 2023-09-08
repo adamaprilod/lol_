@@ -59,24 +59,24 @@ $edit = mysqli_fetch_assoc($data);
                 <div class="col-lg-8">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Form Agama</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Edit Agama</h1>
                         </div>
                         <form class="user" method="post">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="id_agama"
-                                placeholder="Id Agama" name="id_agama" required>
+                                placeholder="Id Agama" name="id_agama" value="<?= $edit['Id_Agama']; ?>" required>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="nama_agama"
-                                    placeholder="Nama Agama" name="nama_agama" required>
+                                    placeholder="Nama Agama" name="nama_agama" required value="<?= $edit['Nama_Agama']; ?>">
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="user_input"
-                                    placeholder="User Input" name="user_input">
+                                    placeholder="User Input" name="user_input" value="<?= $edit['User_Input']; ?>">
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="id_user" id="id_user">
-                                    <option>Pilih Akses User</option>
+                                <select class="form-control" name="id_user" id="id_user" >
+                                <option value="<?= $edit['id_user'] ?>"><?= $edit['hak_akses'] ?> (<?= $edit['nama'] ?>)</option>
                                     <?php
                                     $sql = mysqli_query($conn, "SELECT * FROM user WHERE hak_akses = '$status' AND id_user='$_SESSION[id_user];'");
                                     while ($data = mysqli_fetch_assoc($sql)) {
