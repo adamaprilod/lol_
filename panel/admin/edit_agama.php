@@ -9,49 +9,46 @@ if ($_SESSION['hak_akses'] != 'admin') {
     </script>
     ";
 }
-
 if (isset($_POST['simpan'])) {
     $id_agama = htmlspecialchars($_POST['id_agama']);
     $nama_agama = htmlspecialchars($_POST['nama_agama']);
-    $tgl_input = htmlspecialchars($_POST['tgl_input']);
-    $user_input = htmlspecialchars($_POST['user_input']);
+    $tgl_update = date('Y-m-d');
+    $user_update = htmlspecialchars($_POST['user_update']);
     $id_user = htmlspecialchars($_POST['id_user']);
-
-    //cek id sudah terdaftar belum
-    $result = mysqli_query($conn, "SELECT Id_Agama FROM agama WHERE Id_Agama = '$id_agama'");
-    if (mysqli_fetch_assoc($result)) {
-        echo "
-        <script>
-            alert('ID sudah terdaftar, silahkan ganit!');
-            document.location.href='form_agama.php';
-        </script>
-        ";
-        return false;
-    }
-
-    mysqli_query($conn, "INSERT INTO agama VALUES('$id_agama','$nama_agama','$tgl_input','$user_input','','','$id_user')");
-
-    // var_dump($cek);
+    $query = "UPDATE agama SET
+            Id_Agama='$id_agama',
+            Nama_agama='$nama_agama',
+            Tgl_Update='$tgl_update',
+            User_Update='$user_update',
+            id_user='$id_user'
+            WHERE Id_Agama='$id_agama'
+            ";
+    // var_dump($query);
     // exit();
-
+    mysqli_query($conn, $query);
     if (mysqli_affected_rows($conn) > 0) {
         echo "
-        <script>
-            alert('Data Agama Berhasil dibuat');
-            document.location.href='data_agama.php';
-        </script>
-        ";
+            <script>
+                alert('Data Agama Berhasil DiUpdate');
+                document.location.href='data_agama.php';
+            </script>
+            ";
     } else {
         echo "
-        <script>
-            alert('Data Agama Gagal dibuat');
-            document.location.href='form_agama.php';
-        </script>
-        ";
+            <script>
+                alert('Data Agama Gagal Update');
+                document.location.href='data_agama.php';
+            </script>
+            ";
     }
 }
-?>
 
+$data = mysqli_query($conn, "SELECT *
+FROM agama
+LEFT JOIN user
+ON agama.id_user = user.id_user WHERE Id_Agama='" . $_GET['Id_Agama'] . "'");
+$edit = mysqli_fetch_assoc($data);
+?>
 <body id="page-top">
     <div class="container">
     <div class="card o-hidden border-0 shadow-lg my-5">
@@ -72,9 +69,6 @@ if (isset($_POST['simpan'])) {
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="nama_agama"
                                     placeholder="Nama Agama" name="nama_agama" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="datetime-local" class="form-control form-control-user" id="tgl_input" name="tgl_input" required>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="user_input"
@@ -102,7 +96,6 @@ if (isset($_POST['simpan'])) {
         </div>
     </div>
 </div>
-
 <?php
 include 'footer.php';
 ?>
