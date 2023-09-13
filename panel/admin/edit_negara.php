@@ -9,12 +9,14 @@ if ($_SESSION['hak_akses'] != 'admin') {
     </script>
     ";
 }
+
 if (isset($_POST['simpan'])) {
     $id_negara = htmlspecialchars($_POST['id_negara']);
     $nama_negara = htmlspecialchars($_POST['nama_negara']);
     $tgl_update = date('Y-m-d');
     $user_update = htmlspecialchars($_POST['user_update']);
     $id_user = htmlspecialchars($_POST['id_user']);
+
     $query = "UPDATE kewarganegaraan SET
             id_negara='$id_negara',
             nama_negara='$nama_negara',
@@ -30,14 +32,14 @@ if (isset($_POST['simpan'])) {
         echo "
             <script>
                 alert('Data Agama Berhasil DiUpdate');
-                document.location.href='data_agama.php';
+                document.location.href='data_negara.php';
             </script>
             ";
     } else {
         echo "
             <script>
                 alert('Data Agama Gagal Update');
-                document.location.href='data_agama.php';
+                document.location.href='data_negara.php';
             </script>
             ";
     }
@@ -45,7 +47,7 @@ if (isset($_POST['simpan'])) {
 
 $data = mysqli_query($conn, "SELECT *
 FROM kewarganegaraan
-LEFT JOIN user
+INNER JOIN user
 ON kewarganegaraan.id_user = user.id_user WHERE id_negara='" . $_GET['id_negara'] . "'");
 $edit = mysqli_fetch_assoc($data);
 ?>
