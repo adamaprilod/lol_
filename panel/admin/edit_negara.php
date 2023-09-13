@@ -51,53 +51,77 @@ INNER JOIN user
 ON kewarganegaraan.id_user = user.id_user WHERE id_negara='" . $_GET['id_negara'] . "'");
 $edit = mysqli_fetch_assoc($data);
 ?>
-<body id="page-top">
-    <div class="container">
-    <div class="card o-hidden border-0 shadow-lg my-5">
-        <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-                <div class="col-lg-2 d-none d-lg-block "></div>
-                <div class="col-lg-8">
-                    <div class="p-5">
-                        <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Edit Agama</h1>
+?>
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Form Edit Negara <small>Administrator</small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <form method="post" action="" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="id_negara">ID Negara<span class="required"></span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" name="id_negara" id="id_negara" required="required" class="form-control " value="<?= $edit['id_negara']; ?>" readonly>
+                            </div>
                         </div>
-                        <form class="user" method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="id_negara"
-                                placeholder="Id Negara" name="id_negara" value="<?= $edit['id_negara']; ?>" required>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_negara">Nama Negara <span class="required"></span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" id="nama_negara" name="nama_negara" required="required" class="form-control" value="<?= $edit['nama_negara']; ?>">
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="nama_negara"
-                                    placeholder="Nama Negara" name="nama_negara" required value="<?= $edit['nama_negara']; ?>">
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="user_input">User Update<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" id="user_update" name="user_update" required="required" class="form-control" value="<?= $edit['user_input']; ?>">
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="user_input"
-                                    placeholder="User Input" name="user_input" value="<?= $edit['user_input']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control" name="id_user" id="id_user" >
-                                <option value="<?= $edit['id_user'] ?>"><?= $edit['hak_akses'] ?> (<?= $edit['nama'] ?>)</option>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align ">Akses User</label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select class="form-control" name="id_user" id="id_user">
+                                    <option value="<?= $edit['id_user'] ?>"><?= $edit['hak_akses'] ?> (<?= $edit['nama'] ?>)</option>
                                     <?php
                                     $sql = mysqli_query($conn, "SELECT * FROM user WHERE hak_akses = '$status' AND id_user='$_SESSION[id_user];'");
                                     while ($data = mysqli_fetch_assoc($sql)) {
                                     ?>
-                                        <option value="<?= $data['id_user'] ?>"><?= $data['hak_akses'] ?> (<?= $data['username'] ?>)</option>
+                                        <option value="<?= $data['id_user'] ?>"><?= $data['hak_akses'] ?> (<?= $data['nama'] ?>)</option>
                                     <?php
                                     }
                                     ?>
                                 </select>
                             </div>
-                            <button class="btn btn-danger" type="reset">Reset</button>
-                            <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="item form-group">
+                            <div class="col-md-6 col-sm-6 offset-md-3">
+                                <!-- <button class="btn btn-primary" type="button">Cancel</button> -->
+                                <button class="btn btn-warning" type="reset">Reset</button>
+                                <button type="submit" class="btn btn-success" name="simpan">Update</button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+<!-- /page content -->
+
 <?php
 include 'footer.php';
 ?>

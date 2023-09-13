@@ -47,20 +47,20 @@ if ($_SESSION['hak_akses'] != 'admin') {
             $sql = mysqli_query($conn, $query);
             while ($data = mysqli_fetch_assoc($sql)) {
             ?>
-            <tr>
-                <td><?= $no++; ?></td>
-                <td><?= $data['nama_agama']; ?></td>
-                <td><?= $data['tgl_input']; ?></td>
-                <td><?= $data['user_input']; ?></td>
-                <td><?= $data['tgl_update']; ?></td>
-                <td><?= $data['user_update']; ?></td>
-                <td><?= $data['hak_akses']; ?> (<?= $data['username']; ?>)</td>
-                <td><a class="btn btn-warning" type="button" href="edit_agama.php?id_agama=<?= $data['id_agama']; ?>"><i class="far fa-edit" aria-hidden="true"></i></a></td>
-                <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_agama.php?id_agama=<?= $data['id_agama']; ?>"><i class="fas fa-trash-alt" aria-hidden="true"></i></a></td>
-            </tr>
-        <?php
+                <tr>
+                    <td><?= $no++; ?></td>
+                    <td><?= $data['nama_agama']; ?></td>
+                    <td><?= $data['tgl_input']; ?></td>
+                    <td><?= $data['user_input']; ?></td>
+                    <td><?= $data['tgl_update']; ?></td>
+                    <td><?= $data['user_update']; ?></td>
+                    <td><?= $data['hak_akses']; ?> (<?= $data['nama']; ?>)</td>
+                    <td><a class="btn btn-dark type="button" href="edit_agama.php?id_agama=<?= $data['id_agama']; ?>"><i class="fas fa-pen-square" style="color: #ffffff;"></i></a></td>
+                    <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_agama.php?id_agama=<?= $data['id_agama']; ?>"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            <?php
             }
-        ?>
+            ?>
         </tbody>
     </table><br><br><br>
     </div>

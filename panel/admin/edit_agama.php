@@ -16,12 +16,12 @@ if (isset($_POST['simpan'])) {
     $user_update = htmlspecialchars($_POST['user_update']);
     $id_user = htmlspecialchars($_POST['id_user']);
     $query = "UPDATE agama SET
-            Id_Agama='$id_agama',
-            Nama_agama='$nama_agama',
-            Tgl_Update='$tgl_update',
-            User_Update='$user_update',
+            id_agama='$id_agama',
+            nama_agama='$nama_agama',
+            tgl_update='$tgl_update',
+            user_update='$user_update',
             id_user='$id_user'
-            WHERE Id_Agama='$id_agama'
+            WHERE id_agama='$id_agama'
             ";
     // var_dump($query);
     // exit();
@@ -64,15 +64,15 @@ $edit = mysqli_fetch_assoc($data);
                         <form class="user" method="post">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="id_agama"
-                                placeholder="Id Agama" name="id_agama" value="<?= $edit['id_agama']; ?>" required>
+                                placeholder="Id Agama" name="id_agama" value="<?= $edit['id_agama']; ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="nama_agama"
                                     placeholder="Nama Agama" name="nama_agama" required value="<?= $edit['nama_agama']; ?>">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="user_input"
-                                    placeholder="User Input" name="user_input" value="<?= $edit['user_input']; ?>">
+                            <input type="text" class="form-control form-control-user" id="user_update"
+                                    placeholder="User Update" name="user_update" required value="<?= $edit['user_input']; ?>">
                             </div>
                             <div class="form-group">
                                 <select class="form-control" name="id_user" id="id_user" >
