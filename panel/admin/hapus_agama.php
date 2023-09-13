@@ -1,7 +1,7 @@
 <?php
 include 'conn.php';
-if (isset($_GET['Id_Agama'])) {
-    mysqli_query($conn, "DELETE FROM agama WHERE Id_Agama='" . $_GET['Id_Agama'] . "'");
+if (isset($_GET['id_agama'])) {
+    mysqli_query($conn, "DELETE FROM agama WHERE id_agama='" . $_GET['id_agama'] . "'");
     if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>

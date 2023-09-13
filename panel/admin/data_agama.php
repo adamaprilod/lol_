@@ -19,8 +19,9 @@ if ($_SESSION['hak_akses'] != 'admin') {
             <h2>Data <small>Agama</small></h2>
     </div>
     <div class="text-muted font-12 m-b-30 mb-2">
-        <a href="form_agama.php" type="button" class="btn btn-round btn-dark ml-2"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
+        <a href="form_agama.php" type="button" class="btn btn-round btn-primary ml-2"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
     </div>
+    
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -42,20 +43,20 @@ if ($_SESSION['hak_akses'] != 'admin') {
             $query = "SELECT *
             FROM agama
             INNER JOIN user
-            ON agama.Id_User = user.id_user";
+            ON agama.id_user = user.id_user";
             $sql = mysqli_query($conn, $query);
             while ($data = mysqli_fetch_assoc($sql)) {
             ?>
             <tr>
                 <td><?= $no++; ?></td>
-                <td><?= $data['Nama_Agama']; ?></td>
-                <td><?= $data['Tgl_Input']; ?></td>
-                <td><?= $data['User_Input']; ?></td>
-                <td><?= $data['Tgl_Update']; ?></td>
-                <td><?= $data['User_Update']; ?></td>
-                <td><?= $data['hak_akses']; ?> (<?= $data['nama']; ?>)</td>
-                <td><a class="btn btn-warning" type="button" href="edit_agama.php?Id_Agama=<?= $data['Id_Agama']; ?>"><i class="far fa-edit" aria-hidden="true"></i></a></td>
-                <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_agama.php?Id_Agama=<?= $data['Id_Agama']; ?>"><i class="fas fa-trash-alt"" aria-hidden="true"></i></a></td>
+                <td><?= $data['nama_agama']; ?></td>
+                <td><?= $data['tgl_input']; ?></td>
+                <td><?= $data['user_input']; ?></td>
+                <td><?= $data['tgl_update']; ?></td>
+                <td><?= $data['user_update']; ?></td>
+                <td><?= $data['hak_akses']; ?> (<?= $data['username']; ?>)</td>
+                <td><a class="btn btn-warning" type="button" href="edit_agama.php?id_agama=<?= $data['id_agama']; ?>"><i class="far fa-edit" aria-hidden="true"></i></a></td>
+                <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_agama.php?id_agama=<?= $data['id_agama']; ?>"><i class="fas fa-trash-alt" aria-hidden="true"></i></a></td>
             </tr>
         <?php
             }

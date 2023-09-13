@@ -1,4 +1,6 @@
-<?php include "header.php";
+<?php
+include 'header.php';
+
 if ($_SESSION['hak_akses'] != 'admin') {
     echo "
     <script>
@@ -15,18 +17,21 @@ if ($_SESSION['hak_akses'] != 'admin') {
 <body id="page-top">
     <div class="container">
         <div class="x_title">
-            <h2>Data <small>Admin & Operator</small></h2>
+            <h2>Data <small>Kewarganegaraan</small></h2>
     </div>
     <div class="text-muted font-12 m-b-30 mb-2">
-        <a href="register.php" type="button" class="btn btn-round btn-primary ml-2"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
+        <a href="form_negara.php" type="button" class="btn btn-round btn-primary ml-2"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
     </div>
+    
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Username</th>
-                <th>Nama</th>
-                <th>Email</th>
+                <th>Nama Negara</th>
+                <th>Tgl Input</th>
+                <th>User Input</th>
+                <th>Tgl Update</th>
+                <th>User Update</th>
                 <th>Akses</th>
                 <th>Update</th>
                 <th>Delete</th>
@@ -37,22 +42,26 @@ if ($_SESSION['hak_akses'] != 'admin') {
             include 'conn.php';
             $no = 1;
             $query = "SELECT *
-            FROM user ";
+            FROM kewarganegaraan
+            INNER JOIN user
+            ON kewarganegaraan.id_user = user.id_user";
             $sql = mysqli_query($conn, $query);
             while ($data = mysqli_fetch_assoc($sql)) {
         ?>
-        <tr>
-            <td><?= $no++; ?></td>
-            <td><?= $data['username']; ?></td>
-            <td><?= $data['nama']; ?></td>
-            <td><?= $data['email']; ?></td>
-            <td><?= $data['hak_akses']; ?></td>
-            <td align="center"><a class="btn btn-warning btn-sm" type="button" href="edit_user.php?id_user=<?= $data['id_user']; ?>"><i class="far fa-edit"></i></a></td>
-            <td align="center"><a class="btn btn-danger btn-sm" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_user.php?id_user=<?= $data['id_user']; ?>"><i class="fas fa-trash-alt"></i></a></td>
-        </tr>
-    <?php
-    }
-?>
+            <tr>
+                <td><?= $no++; ?></td>
+                <td><?= $data['nama_negara']; ?></td>
+                <td><?= $data['tgl_input']; ?></td>
+                <td><?= $data['user_input']; ?></td>
+                <td><?= $data['tgl_update']; ?></td>
+                <td><?= $data['user_update']; ?></td>
+                <td><?= $data['hak_akses']; ?> (<?= $data['nama']; ?>)</td>
+                <td><a class="btn btn-warning" type="button" href="edit_negara.php?Id_Negara=<?= $data['id_negara']; ?>"><i class="far fa-edit" aria-hidden="true"></i></a></td>
+                <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_negara.php?Id_Negara=<?= $data['id_negara']; ?>"><i class="fas fa-trash-alt" aria-hidden="true"></i></a></td>
+            </tr>
+        <?php
+        }
+        ?>
         </tbody>
     </table><br><br><br>
     </div>

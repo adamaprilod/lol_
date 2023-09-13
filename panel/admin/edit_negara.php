@@ -11,47 +11,46 @@ if ($_SESSION['hak_akses'] != 'admin') {
 }
 
 if (isset($_POST['simpan'])) {
-    $id_agama = htmlspecialchars($_POST['id_agama']);
-    $nama_agama = htmlspecialchars($_POST['nama_agama']);
-    $tgl_input = htmlspecialchars($_POST['tgl_input']);
-    $user_input = htmlspecialchars($_POST['user_input']);
+    $id_negara = htmlspecialchars($_POST['id_negara']);
+    $nama_negara = htmlspecialchars($_POST['nama_negara']);
+    $tgl_update = date('Y-m-d');
+    $user_update = htmlspecialchars($_POST['user_update']);
     $id_user = htmlspecialchars($_POST['id_user']);
 
-    //cek id sudah terdaftar belum
-    $result = mysqli_query($conn, "SELECT id_agama FROM agama WHERE id_agama = '$id_agama'");
-    if (mysqli_fetch_assoc($result)) {
-        echo "
-        <script>
-            alert('ID sudah terdaftar, silahkan ganti!!');
-            document.location.href='form_agama.php';
-        </script>
-        ";
-        return false;
-    }
-
-    mysqli_query($conn, "INSERT INTO agama VALUES('$id_agama','$nama_agama','$tgl_input','$user_input','','','$id_user')");
-
-    // var_dump($cek);
+    $query = "UPDATE kewarganegaraan SET
+            id_negara='$id_negara',
+            nama_negara='$nama_negara',
+            tgl_update='$tgl_update',
+            user_update='$user_update',
+            id_user='$id_user'
+            WHERE id_negara='$id_negara'
+            ";
+    // var_dump($query);
     // exit();
-
+    mysqli_query($conn, $query);
     if (mysqli_affected_rows($conn) > 0) {
         echo "
-        <script>
-            alert('Data Agama Berhasil dibuat');
-            document.location.href='data_agama.php';
-        </script>
-        ";
+            <script>
+                alert('Data Agama Berhasil DiUpdate');
+                document.location.href='data_negara.php';
+            </script>
+            ";
     } else {
         echo "
-        <script>
-            alert('Data Agama Gagal dibuat');
-            document.location.href='form_agama.php';
-        </script>
-        ";
+            <script>
+                alert('Data Agama Gagal Update');
+                document.location.href='data_negara.php';
+            </script>
+            ";
     }
 }
-?>
 
+$data = mysqli_query($conn, "SELECT *
+FROM kewarganegaraan
+INNER JOIN user
+ON kewarganegaraan.id_user = user.id_user WHERE id_negara='" . $_GET['id_negara'] . "'");
+$edit = mysqli_fetch_assoc($data);
+?>
 <body id="page-top">
     <div class="container">
     <div class="card o-hidden border-0 shadow-lg my-5">
@@ -62,27 +61,24 @@ if (isset($_POST['simpan'])) {
                 <div class="col-lg-8">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Form Agama</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Edit Agama</h1>
                         </div>
                         <form class="user" method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="id_agama"
-                                placeholder="Id Agama" name="id_agama" required>
+                                <input type="text" class="form-control form-control-user" id="id_negara"
+                                placeholder="Id Negara" name="id_negara" value="<?= $edit['id_negara']; ?>" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="nama_agama"
-                                    placeholder="Nama Agama" name="nama_agama" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="date" class="form-control form-control-user" id="tgl_input" name="tgl_input" required>
+                                <input type="text" class="form-control form-control-user" id="nama_negara"
+                                    placeholder="Nama Negara" name="nama_negara" required value="<?= $edit['nama_negara']; ?>">
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="user_input"
-                                    placeholder="User Input" name="user_input">
+                                    placeholder="User Input" name="user_input" value="<?= $edit['user_input']; ?>">
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="id_user" id="id_user">
-                                    <option>Pilih Akses User</option>
+                                <select class="form-control" name="id_user" id="id_user" >
+                                <option value="<?= $edit['id_user'] ?>"><?= $edit['hak_akses'] ?> (<?= $edit['nama'] ?>)</option>
                                     <?php
                                     $sql = mysqli_query($conn, "SELECT * FROM user WHERE hak_akses = '$status' AND id_user='$_SESSION[id_user];'");
                                     while ($data = mysqli_fetch_assoc($sql)) {
@@ -102,7 +98,6 @@ if (isset($_POST['simpan'])) {
         </div>
     </div>
 </div>
-
 <?php
 include 'footer.php';
 ?>

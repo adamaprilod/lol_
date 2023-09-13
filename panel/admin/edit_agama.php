@@ -46,7 +46,7 @@ if (isset($_POST['simpan'])) {
 $data = mysqli_query($conn, "SELECT *
 FROM agama
 LEFT JOIN user
-ON agama.id_user = user.id_user WHERE Id_Agama='" . $_GET['Id_Agama'] . "'");
+ON agama.id_user = user.id_user WHERE id_agama='" . $_GET['id_agama'] . "'");
 $edit = mysqli_fetch_assoc($data);
 ?>
 <body id="page-top">
@@ -64,15 +64,15 @@ $edit = mysqli_fetch_assoc($data);
                         <form class="user" method="post">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="id_agama"
-                                placeholder="Id Agama" name="id_agama" value="<?= $edit['Id_Agama']; ?>" required>
+                                placeholder="Id Agama" name="id_agama" value="<?= $edit['id_agama']; ?>" required>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="nama_agama"
-                                    placeholder="Nama Agama" name="nama_agama" required value="<?= $edit['Nama_Agama']; ?>">
+                                    placeholder="Nama Agama" name="nama_agama" required value="<?= $edit['nama_agama']; ?>">
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="user_input"
-                                    placeholder="User Input" name="user_input" value="<?= $edit['User_Input']; ?>">
+                                    placeholder="User Input" name="user_input" value="<?= $edit['user_input']; ?>">
                             </div>
                             <div class="form-group">
                                 <select class="form-control" name="id_user" id="id_user" >
@@ -81,7 +81,7 @@ $edit = mysqli_fetch_assoc($data);
                                     $sql = mysqli_query($conn, "SELECT * FROM user WHERE hak_akses = '$status' AND id_user='$_SESSION[id_user];'");
                                     while ($data = mysqli_fetch_assoc($sql)) {
                                     ?>
-                                        <option value="<?= $data['id_user'] ?>"><?= $data['hak_akses'] ?> (<?= $data['nama'] ?>)</option>
+                                        <option value="<?= $data['id_user'] ?>"><?= $data['hak_akses'] ?> (<?= $data['username'] ?>)</option>
                                     <?php
                                     }
                                     ?>
