@@ -117,7 +117,7 @@ $edit = mysqli_fetch_assoc($data);
                                 </select>
                             </div>
                             <button class="btn btn-danger" type="reset">Reset</button>
-                            <button type="submit" class="btn btn-success" name="simpan">Update</button>
+                            <button type="submit" class="btn btn-primary" name="simpan">Update</button>
                         </form>
                     </div>
                 </div>
