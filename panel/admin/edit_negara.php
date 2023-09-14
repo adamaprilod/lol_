@@ -31,14 +31,14 @@ if (isset($_POST['simpan'])) {
     if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>
-                alert('Data Agama Berhasil DiUpdate');
+                alert('Data Negara Berhasil DiUpdate');
                 document.location.href='data_negara.php';
             </script>
             ";
     } else {
         echo "
             <script>
-                alert('Data Agama Gagal Update');
+                alert('Data Negara Gagal Update');
                 document.location.href='data_negara.php';
             </script>
             ";
@@ -47,7 +47,7 @@ if (isset($_POST['simpan'])) {
 
 $data = mysqli_query($conn, "SELECT *
 FROM kewarganegaraan
-INNER JOIN user
+LEFT JOIN user
 ON kewarganegaraan.id_user = user.id_user WHERE id_negara='" . $_GET['id_negara'] . "'");
 $edit = mysqli_fetch_assoc($data);
 ?>
@@ -61,7 +61,7 @@ $edit = mysqli_fetch_assoc($data);
                 <div class="col-lg-8">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Edit Agama</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Edit Negara</h1>
                         </div>
                         <form class="user" method="post">
                             <div class="form-group">
@@ -78,7 +78,7 @@ $edit = mysqli_fetch_assoc($data);
                             </div>
                             <div class="form-group">
                                 <select class="form-control" name="id_user" id="id_user" >
-                                <option value="<?= $edit['id_user'] ?>"><?= $edit['hak_akses'] ?> (<?= $edit['nama'] ?>)</option>
+                                <option value="<?= $edit['id_user'] ?>"><?= $edit['hak_akses'] ?> (<?= $edit['username'] ?>)</option>
                                     <?php
                                     $sql = mysqli_query($conn, "SELECT * FROM user WHERE hak_akses = '$status' AND id_user='$_SESSION[id_user];'");
                                     while ($data = mysqli_fetch_assoc($sql)) {

@@ -55,9 +55,9 @@ if ($_SESSION['hak_akses'] != 'admin') {
                 <td><?= $data['user_input']; ?></td>
                 <td><?= $data['tgl_update']; ?></td>
                 <td><?= $data['user_update']; ?></td>
-                <td><?= $data['hak_akses']; ?> (<?= $data['nama']; ?>)</td>
-                <td><a class="btn btn-warning" type="button" href="edit_negara.php?Id_Negara=<?= $data['id_negara']; ?>"><i class="far fa-edit" aria-hidden="true"></i></a></td>
-                <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_negara.php?Id_Negara=<?= $data['id_negara']; ?>"><i class="fas fa-trash-alt" aria-hidden="true"></i></a></td>
+                <td><?= $data['hak_akses']; ?> (<?= $data['username']; ?>)</td>
+                <td><a class="btn btn-warning" type="button" href="edit_negara.php?id_negara=<?= $data['id_negara']; ?>"><i class="far fa-edit" aria-hidden="true"></i></a></td>
+                <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_negara.php?id_negara=<?= $data['id_negara']; ?>"><i class="fas fa-trash-alt" aria-hidden="true"></i></a></td>
             </tr>
         <?php
         }
