@@ -76,7 +76,7 @@ $edit = mysqli_fetch_assoc($data);
                             </div>
                             <div class="form-group">
                                 <select class="form-control" name="id_user" id="id_user" >
-                                <option value="<?= $edit['id_user'] ?>"><?= $edit['hak_akses'] ?> (<?= $edit['nama'] ?>)</option>
+                                <option value="<?= $edit['id_user'] ?>"><?= $edit['hak_akses'] ?> (<?= $edit['username'] ?>)</option>
                                     <?php
                                     $sql = mysqli_query($conn, "SELECT * FROM user WHERE hak_akses = '$status' AND id_user='$_SESSION[id_user];'");
                                     while ($data = mysqli_fetch_assoc($sql)) {
