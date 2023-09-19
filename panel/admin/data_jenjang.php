@@ -20,7 +20,7 @@ if ($_SESSION['hak_akses'] != 'admin') {
             <h2>Data <small>Jenjang</small></h2>
     </div>
     <div class="text-muted font-12 m-b-30 mb-2">
-        <a href="form_negara.php" type="button" class="btn btn-round btn-primary ml-2"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
+        <a href="form_jenjang.php" type="button" class="btn btn-round btn-primary ml-2"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
     </div>
     
     <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -52,8 +52,8 @@ if ($_SESSION['hak_akses'] != 'admin') {
                 <td><?= $data['user_input']; ?></td>
                 <td><?= $data['tgl_update']; ?></td>
                 <td><?= $data['user_update']; ?></td>
-                <td><a class="btn btn-warning" type="button" href="edit_jenjang.php?id_jenjang=<?= $data['id_jenjang']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-                <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_jenjang.php?id_jenjang=<?= $data['id_jenjang']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                <td><a class="btn btn-dark" type="button" href="edit_jenjang.php?id_jenjang=<?= $data['id_jenjang']; ?>"><i class="fas fa-pen-square" style="color: #ffffff;"></i></a></td>
+                <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_jenjang.php?id_jenjang=<?= $data['id_jenjang']; ?>"><i class="fas fa-trash-alt" aria-hidden="true"></i></a></td>
             </tr>
         <?php
         }

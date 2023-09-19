@@ -1,6 +1,4 @@
-<?php
-include 'header.php';
-
+<?php include "header.php";
 if ($_SESSION['hak_akses'] != 'admin') {
     echo "
     <script>
@@ -9,6 +7,7 @@ if ($_SESSION['hak_akses'] != 'admin') {
     </script>
     ";
 }
+
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
@@ -17,17 +16,17 @@ if ($_SESSION['hak_akses'] != 'admin') {
 <body id="page-top">
     <div class="container">
         <div class="x_title">
-            <h2>Data <small>Kewarganegaraan</small></h2>
+            <h2>Data <small>Jurusan</small></h2>
     </div>
     <div class="text-muted font-12 m-b-30 mb-2">
-        <a href="form_negara.php" type="button" class="btn btn-round btn-primary ml-2"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
+        <a href="form_jurusan.php" type="button" class="btn btn-round btn-primary ml-2"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
     </div>
     
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Negara</th>
+                <th>Kelas</th>
                 <th>Tgl Input</th>
                 <th>User Input</th>
                 <th>Tgl Update</th>
@@ -41,24 +40,24 @@ if ($_SESSION['hak_akses'] != 'admin') {
         <?php
             include 'conn.php';
             $no = 1;
-            $query = "SELECT *
-            FROM kewarganegaraan
-            INNER JOIN user
-            ON kewarganegaraan.id_user = user.id_user";
+            $query = "SELECT id_jurusan, CONCAT(jenjang.nama_jenjang,' ',jurusan.nama_jurusan) as kelas, jurusan.tgl_input,jurusan.user_input,jurusan.tgl_update,jurusan.user_update,CONCAT(user.hak_akses,' (',user.nama,')') as akses
+            FROM jurusan
+            LEFT JOIN jenjang
+            ON jurusan.id_jenjang = jenjang.id_jenjang LEFT JOIN user ON jurusan.id_user = user.id_user";
             $sql = mysqli_query($conn, $query);
             while ($data = mysqli_fetch_assoc($sql)) {
-        ?>
-            <tr>
-                <td><?= $no++; ?></td>
-                <td><?= $data['nama_negara']; ?></td>
-                <td><?= $data['tgl_input']; ?></td>
-                <td><?= $data['user_input']; ?></td>
-                <td><?= $data['tgl_update']; ?></td>
-                <td><?= $data['user_update']; ?></td>
-                <td><?= $data['hak_akses']; ?> (<?= $data['username']; ?>)</td>
-                <td><a class="btn btn-dark type="button" href="edit_negara.php?id_negara=<?= $data['id_negara']; ?>"><i class="fas fa-pen-square" style="color: #ffffff;"></i></a></td>
-                <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_negara.php?id_negara=<?= $data['id_negara']; ?>"><i class="fas fa-trash-alt" aria-hidden="true"></i></a></td>
-            </tr>
+            ?>
+                <tr>
+                    <td><?= $no++; ?></td>
+                    <td><?= $data['kelas']; ?></td>
+                    <td><?= $data['tgl_input']; ?></td>
+                    <td><?= $data['user_input']; ?></td>
+                    <td><?= $data['tgl_update']; ?></td>
+                    <td><?= $data['user_update']; ?></td>
+                    <td><?= $data['akses']; ?></td>
+                    <td><a class="btn btn-dark" type="button" href="edit_jurusan.php?id_jurusan=<?= $data['id_jurusan']; ?>"><i class="fas fa-pen-square" style="color: #ffffff;"></i></a></td>
+                    <td><a class="btn btn-danger" type="button" onclick="return confirm('Data akan di Hapus?')" href="hapus_jurusan.php?id_jurusan=<?= $data['id_jurusan']; ?>"><i class="fas fa-trash-alt" aria-hidden="true"></i></a></td>
+                </tr>
         <?php
         }
         ?>
