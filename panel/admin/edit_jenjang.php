@@ -73,7 +73,7 @@ $edit = mysqli_fetch_assoc($data);
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="user_input"
-                                    placeholder="User Input" name="user_input" value="<?= $edit['user_input']; ?>">
+                                    placeholder="User Input" name="user_update" value="<?= $edit['user_input']; ?>">
                             </div>
                             <button class="btn btn-danger" type="reset">Reset</button>
                             <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>

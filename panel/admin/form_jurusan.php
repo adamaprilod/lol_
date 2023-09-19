@@ -124,8 +124,8 @@ if (isset($_POST['simpan'])) {
                         <div class="ln_solid"></div>
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-3">
-                                <button class="btn btn-warning" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
+                                <button class="btn btn-danger" type="reset">Reset</button>
+                                <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
                             </div>
                         </div>
 
