@@ -84,3 +84,4 @@ $edit = mysqli_fetch_assoc($data);
         </div>
     </div>
 </div>
+<?php include 'footer.php'; ?>

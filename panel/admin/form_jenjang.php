@@ -31,6 +31,7 @@ if (isset($_POST['simpan'])) {
 
     mysqli_query($conn, "INSERT INTO jenjang VALUES('$id_jenjang','$nama_jenjang','$tgl_input','$user_input','','')");
 
+    
     // var_dump($cek);
     // exit();
 
