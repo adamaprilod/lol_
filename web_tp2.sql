@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2023 at 06:30 AM
+-- Generation Time: Sep 20, 2023 at 04:21 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `agama` (
   `id_agama` varchar(5) NOT NULL,
   `nama_agama` varchar(15) DEFAULT NULL,
-  `tgl_input` date DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
   `user_input` varchar(10) DEFAULT NULL,
-  `tgl_update` date DEFAULT NULL,
+  `tgl_update` datetime DEFAULT NULL,
   `user_update` varchar(10) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -42,12 +42,12 @@ CREATE TABLE `agama` (
 --
 
 INSERT INTO `agama` (`id_agama`, `nama_agama`, `tgl_input`, `user_input`, `tgl_update`, `user_update`, `id_user`) VALUES
-('A-001', 'Islam', '2023-09-13', 'Adam ', '2023-09-13', 'Adam ', 18),
-('A-002', 'Kristen ', '2023-09-13', 'Adam ', '2023-09-13', 'Adam ', 18),
-('A-003', 'Katholik', '2023-09-13', 'Adam ', '2023-09-14', 'Adam ', 18),
-('A-004', 'Hindu', '2023-09-13', 'Adam', '0000-00-00', '', 18),
-('A-005', 'Budha', '2023-09-13', 'Adam', '0000-00-00', '', 18),
-('A-006', 'Konghucu', '2023-09-13', 'Adam ', '0000-00-00', '', 18);
+('A-001', 'Islam', '2023-09-16 00:00:00', 'Adam', '0000-00-00 00:00:00', '', 18),
+('A-002', 'Kristen', '2023-09-16 00:00:00', 'Adam', '0000-00-00 00:00:00', '', 18),
+('A-003', 'Katholik', '2023-09-16 00:00:00', 'Adam', '0000-00-00 00:00:00', '', 18),
+('A-004', 'Hindu ', '2023-09-16 00:00:00', 'Adam', '0000-00-00 00:00:00', '', 18),
+('A-005', 'Budha', '2023-09-16 00:00:00', 'Adam', '0000-00-00 00:00:00', '', 18),
+('A-006', 'Konghucu', '2023-09-16 00:00:00', 'Adam', '2023-09-20 00:00:00', 'Adam', 18);
 
 -- --------------------------------------------------------
 
@@ -58,11 +58,20 @@ INSERT INTO `agama` (`id_agama`, `nama_agama`, `tgl_input`, `user_input`, `tgl_u
 CREATE TABLE `jenjang` (
   `id_jenjang` varchar(5) NOT NULL,
   `nama_jenjang` varchar(5) DEFAULT NULL,
-  `tgl_input` datetime DEFAULT NULL,
+  `tgl_input` date DEFAULT NULL,
   `user_input` varchar(10) DEFAULT NULL,
-  `tgl_update` datetime DEFAULT NULL,
+  `tgl_update` date DEFAULT NULL,
   `user_update` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jenjang`
+--
+
+INSERT INTO `jenjang` (`id_jenjang`, `nama_jenjang`, `tgl_input`, `user_input`, `tgl_update`, `user_update`) VALUES
+('K-001', 'X', '2023-09-16', 'Adam', '2023-09-19', 'Adam'),
+('K-002', 'XI', '2023-09-16', 'Adam', '0000-00-00', ''),
+('K-003', 'XII', '2023-09-16', 'Adam', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -72,7 +81,7 @@ CREATE TABLE `jenjang` (
 
 CREATE TABLE `jurusan` (
   `id_jurusan` varchar(5) NOT NULL,
-  `nama_jurusan` varchar(15) DEFAULT NULL,
+  `nama_jurusan` varchar(50) DEFAULT NULL,
   `id_jenjang` varchar(5) DEFAULT NULL,
   `tgl_input` date DEFAULT NULL,
   `user_input` varchar(10) DEFAULT NULL,
@@ -80,6 +89,21 @@ CREATE TABLE `jurusan` (
   `user_update` varchar(10) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jurusan`
+--
+
+INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`, `id_jenjang`, `tgl_input`, `user_input`, `tgl_update`, `user_update`, `id_user`) VALUES
+('J-001', 'Rekayasa Perangkat Lunak', 'K-001', '2023-09-16', 'Adam', '2023-09-20', 'Adam', 18),
+('J-002', 'Rekayasa Perangkat Lunak', 'K-002', '2023-09-16', 'Adam', '0000-00-00', '', 18),
+('J-003', 'Rekayasa Perangkat Lunak', 'K-003', '2023-09-16', 'Adam', '0000-00-00', '', 18),
+('J-004', 'Multimedia', 'K-001', '2023-09-20', 'Adam', '0000-00-00', '', 18),
+('J-005', 'Multimedia', 'K-002', '2023-09-20', 'Adam', '0000-00-00', '', 18),
+('J-006', 'Multimedia', 'K-003', '2023-09-20', 'Adam', '0000-00-00', '', 18),
+('J-007', 'Akuntansi', 'K-001', '2023-09-20', 'Adam', '0000-00-00', '', 18),
+('J-008', 'Akuntansi', 'K-002', '2023-09-20', 'Adam', '0000-00-00', '', 18),
+('J-009', 'Akuntansi', 'K-003', '2023-09-20', 'Adam', '0000-00-00', '', 18);
 
 -- --------------------------------------------------------
 
@@ -90,9 +114,9 @@ CREATE TABLE `jurusan` (
 CREATE TABLE `kewarganegaraan` (
   `id_negara` varchar(5) NOT NULL,
   `nama_negara` varchar(15) DEFAULT NULL,
-  `tgl_input` date DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
   `user_input` varchar(10) DEFAULT NULL,
-  `tgl_update` date DEFAULT NULL,
+  `tgl_update` datetime DEFAULT NULL,
   `user_update` varchar(10) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -102,8 +126,11 @@ CREATE TABLE `kewarganegaraan` (
 --
 
 INSERT INTO `kewarganegaraan` (`id_negara`, `nama_negara`, `tgl_input`, `user_input`, `tgl_update`, `user_update`, `id_user`) VALUES
-('N-001', 'Indonesia', '2023-09-13', 'Adam', '2023-09-14', 'Adam', 18),
-('N-002', 'Jepang', '2023-09-14', 'Adam', '2023-09-14', 'Adam', 18);
+('N-001', 'Indonesia', '2023-09-16 00:00:00', 'Adam', '2023-09-19 00:00:00', 'Adam', 18),
+('N-002', 'Jepang', '2023-09-16 00:00:00', 'Adam', '0000-00-00 00:00:00', '', 18),
+('N-003', 'China', '2023-09-16 00:00:00', 'Adam', '0000-00-00 00:00:00', '', 18),
+('N-004', 'Belanda', '2023-09-16 00:00:00', 'Adam', '0000-00-00 00:00:00', '', 18),
+('N-005', 'Rusia', '2023-09-16 00:00:00', 'Adam', '0000-00-00 00:00:00', '', 18);
 
 -- --------------------------------------------------------
 
@@ -149,9 +176,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `email`, `hak_akses`) VALUES
-(18, 'adamaprilod', '$2y$10$EgbMnfa/MuEWR4uvRWK2HuSVbS.abLE9N38AWtkpLu8NlLLdHdMmO', 'Adam Aprilod Zulfikar', 'adamaprilod@gmail.com', 'admin'),
-(32, 'op', '$2y$10$r1mDYspfCJnaMTtdvdD0SuwghvnnYVMdJSUW7gSVj2SYvyqfwct5W', 'Operator', 'operpower@gmail.com', 'operator'),
-(34, 'admin', '$2y$10$MNft0896nC1oK3wpLq7q2.0T0CUOjbJMyASl.h9zQF32rHrGm0AZq', 'MIMIN GANTENG', 'miminganteng@gmail.com', 'admin');
+(18, 'adam_aprilod', '$2y$10$vA.HEKy1m23bNkfSd/fb0.RwHxIvJ0k/baUU5/kPmaxZS3XYEHxTe', 'Adam Aprilod Zulfikar', 'adamaprilod@gmail.com', 'admin'),
+(32, 'duniaikan', '$2y$10$H2TFa2oJw6k0AoT6M7mRNu3uKRN4q12EmpspYQ7Yt7kf6TkGVUPC6', 'Adam Aprilod Zulfikar', 'adamaprilodz@gmail.com', 'operator');
 
 --
 -- Indexes for dumped tables
@@ -209,7 +235,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables
@@ -225,7 +251,8 @@ ALTER TABLE `agama`
 -- Constraints for table `jurusan`
 --
 ALTER TABLE `jurusan`
-  ADD CONSTRAINT `jurusan_ibfk_1` FOREIGN KEY (`id_jenjang`) REFERENCES `jenjang` (`id_jenjang`);
+  ADD CONSTRAINT `jurusan_ibfk_1` FOREIGN KEY (`id_jenjang`) REFERENCES `jenjang` (`id_jenjang`),
+  ADD CONSTRAINT `jurusan_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Constraints for table `kewarganegaraan`
