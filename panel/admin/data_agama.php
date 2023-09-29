@@ -20,6 +20,7 @@ if ($_SESSION['hak_akses'] != 'admin') {
     </div>
     <div class="text-muted font-12 m-b-30 mb-2">
         <a href="form_agama.php" type="button" class="btn btn-round btn-primary ml-2"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
+        <a href="laporan/excel_agama.php" type="button" class="btn btn-round btn-success ml-2"><i class="fa fa-print" aria-hidden="true"></i> Cetak Data</a>
     </div>
     
     <table id="example" class="table table-striped table-bordered" style="width:100%">
