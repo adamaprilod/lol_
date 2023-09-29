@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2023 at 04:21 AM
+-- Generation Time: Sep 29, 2023 at 09:31 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -101,9 +101,15 @@ INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`, `id_jenjang`, `tgl_input`, 
 ('J-004', 'Multimedia', 'K-001', '2023-09-20', 'Adam', '0000-00-00', '', 18),
 ('J-005', 'Multimedia', 'K-002', '2023-09-20', 'Adam', '0000-00-00', '', 18),
 ('J-006', 'Multimedia', 'K-003', '2023-09-20', 'Adam', '0000-00-00', '', 18),
-('J-007', 'Akuntansi', 'K-001', '2023-09-20', 'Adam', '0000-00-00', '', 18),
-('J-008', 'Akuntansi', 'K-002', '2023-09-20', 'Adam', '0000-00-00', '', 18),
-('J-009', 'Akuntansi', 'K-003', '2023-09-20', 'Adam', '0000-00-00', '', 18);
+('J-007', 'Akuntansi dan Keuangan Lembaga', 'K-001', '2023-09-20', 'Adam', '2023-09-29', 'Adam', 18),
+('J-008', 'Akuntansi dan Keuangan Lembaga', 'K-002', '2023-09-20', 'Adam', '2023-09-29', 'Adam', 18),
+('J-009', 'Akuntansi dan Keuangan Lembaga', 'K-003', '2023-09-29', 'Adam', '2023-09-29', 'Adam', 18),
+('J-010', 'Bisnis Daring dan Pemasaran', 'K-001', '2023-09-29', 'Adam', '2023-09-29', 'Adam', 18),
+('J-011', 'Bisnis Daring dan Pemasaran', 'K-002', '2023-09-29', 'Adam', '2023-09-29', 'Adam', 18),
+('J-012', 'Bisnis Daring dan Pemasaran', 'K-003', '2023-09-29', 'Adam', '2023-09-29', 'Adam', 18),
+('J-013', 'Otomatisasi dan Tata Kelola Perkantoran', 'K-001', '2023-09-29', 'Adam', '0000-00-00', '', 18),
+('J-014', 'Otomatisasi dan Tata Kelola Perkantoran', 'K-002', '2023-09-29', 'Adam', '0000-00-00', '', 18),
+('J-015', 'Otomatisasi dan Tata Kelola Perkantoran', 'K-003', '2023-09-29', 'Adam', '0000-00-00', '', 18);
 
 -- --------------------------------------------------------
 
@@ -266,7 +272,8 @@ ALTER TABLE `kewarganegaraan`
 ALTER TABLE `pendaftaran`
   ADD CONSTRAINT `pendaftaran_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`),
   ADD CONSTRAINT `pendaftaran_ibfk_2` FOREIGN KEY (`id_negara`) REFERENCES `kewarganegaraan` (`id_negara`),
-  ADD CONSTRAINT `pendaftaran_ibfk_3` FOREIGN KEY (`id_agama`) REFERENCES `agama` (`id_agama`);
+  ADD CONSTRAINT `pendaftaran_ibfk_3` FOREIGN KEY (`id_agama`) REFERENCES `agama` (`id_agama`),
+  ADD CONSTRAINT `pendaftaran_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
