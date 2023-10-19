@@ -69,7 +69,7 @@ if (isset($_POST['simpan'])) {
                                 <input type="text" class="form-control form-control-user" id="nama_siswa" placeholder="Nama Siswa" name="nama_siswa" required>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control form-control-user" id="alamat" name="alamat" placeholder="Alamat" required></textarea>
+                                <textarea class="form-control" id="alamat" name="alamat" placeholder="Alamat" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label">Jenis Kelamin</label>
