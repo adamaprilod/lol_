@@ -100,7 +100,7 @@ if (!isset($_SESSION['login'])) {
 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="form_pendaftaran.php">Form Pendaftaran</a>
-        <a class="collapse-item" href="register.html">Data Pendaftaran</a>
+        <a class="collapse-item" href="data_pendaftaran.php">Data Pendaftaran</a>
         </div>
     </div>
 </li>
