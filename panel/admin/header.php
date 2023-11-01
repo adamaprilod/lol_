@@ -158,14 +158,11 @@ if (!isset($_SESSION['login'])) {
 
 
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
+            <li class="nav-item no-arrow">
                 <a onclick="return confirm('Yakin Ingin Log Out');" href="logout.php">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="text-dark">Logout</span>
                 </a>
-                
-
-                
             </li>
 
         </ul>
