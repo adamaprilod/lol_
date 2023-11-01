@@ -173,12 +173,6 @@ if ($_SESSION['hak_akses'] != 'admin') {
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="user_update" class="col-md-2 col-form-label col-form-label-sm">Tanggal Update</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control form-control-sm" name="user_update" id="user_update" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label for="akses" class="col-md-2 col-form-label col-form-label-sm">Akses</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control form-control-sm" name="akses" id="akses" readonly>
